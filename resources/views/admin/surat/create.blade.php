@@ -37,9 +37,9 @@
             </div>
 
             <div>
-                <label class="block mb-1 font-medium">Alamat</label>
-                <textarea name="alamat" class="w-full border-gray-300 rounded-lg" required>{{ old('alamat') }}</textarea>
-                @error('alamat')
+                <label class="block mb-1 font-medium">No HP</label>
+                <textarea name="no_hp" class="w-full border-gray-300 rounded-lg" required>{{ old('no_hp') }}</textarea>
+                @error('no_hp')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>

@@ -21,8 +21,8 @@ class JenisSuratController extends Controller
         $data = $request->except(['_token', 'template']);
 
         $content = \App\Helpers\TemplateHelper::render($template, $data);
-
-        return view('surat.preview-show', [
+        // dd($content);
+        return view('admin.surat.preview-show', [
             'jenis' => $id ? JenisSurat::find($id) : null,
             'content' => $content
         ]);

@@ -47,7 +47,7 @@ class HomeController extends Controller
         $villageName = ProfileContent::where('key', 'village_name')->first();
         // dd( $villageName );
 
-        return view('frontend.home', compact(
+        return view('frontend.home2', compact(
             'sliders',
             'potentials',
             'news',

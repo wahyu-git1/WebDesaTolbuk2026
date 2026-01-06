@@ -40,10 +40,14 @@
                         class="absolute top-5 right-0 mt-2 w-max bg-white shadow-lg rounded-md py-4 z-50">
                         <a href="{{ route('profil.visi') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Visi & Misi</a>
+                        <a href="{{ route('profil.tentang') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tentang Desa</a>
                         <a href="{{ route('profil.sejarah') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sejarah Desa</a>
-                        <a href="{{ route('profil.struktur') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Struktur Pemerintahan</a>
+                        <a href="{{ route('profil.peraturan') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan Desa</a>
+                        <a href="{{ route('profil.statistikaPenduduk') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Statistika Penduduk</a>
                     </div>
                 </div>
                 <div class="relative" x-data="{ dropdownOpenLayanan: false }" @mouseenter="dropdownOpenLayanan = true"
@@ -62,7 +66,7 @@
                         <a href="{{ route('service-procedures') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Prosedur Layanan</a>
                         <a href="{{ route('documents') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dokumen Desa</a>
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dokumen Surat-surat</a>
                         <a href="{{ route('surat.public.create') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ajukan Surat Online</a>
                     </div>
@@ -77,8 +81,6 @@
                     class="text-white text-base font-semibold hover:text-yellow-200">Galeri</x-nav-link>
                 <x-nav-link :href="route('institutions.index')" :active="request()->routeIs('institutions.index') || request()->routeIs('institutions.show')"
                     class="text-white text-base font-semibold hover:text-yellow-200">Lembaga Desa</x-nav-link>
-                <x-nav-link :href="route('products')" :active="request()->routeIs('products') || request()->routeIs('products.show')"
-                    class="text-white text-base font-semibold hover:text-yellow-200">Produk Desa</x-nav-link>
             </div>
             <div class="flex items-center space-x-4">
                 @auth
@@ -123,7 +125,6 @@
             </div>
         </div>
     </div>
-
     <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden bg-primary-dark">
         <div class="px-4 pt-2 pb-4 space-y-2">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')"
@@ -184,9 +185,6 @@
                 class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Berita</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')"
                 class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Galeri</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('products')" :active="request()->routeIs('products')"
-                class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Produk
-                Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('institutions.index')" :active="request()->routeIs('institutions.index')"
                 class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Lembaga
                 Desa</x-responsive-nav-link>

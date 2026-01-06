@@ -131,7 +131,7 @@ class SettingController extends Controller
         // --- Akhir logika gabungan ---
 
 
-        $title = "Pengaturan Umum & Info Desa";
+        $title = "Pengaturan Umum & Info Desa Tolbuk";
         return view('admin.settings.general_info', compact('settings', 'title'));
     }
 

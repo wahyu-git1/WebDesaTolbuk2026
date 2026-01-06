@@ -53,6 +53,7 @@
                             'key' => 'site_logo',
                             'errors' => $errors,
                         ])
+                        
 
                         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 mt-6">Warna Branding</h3>
                         @include('admin.settings.partials._setting_field', [

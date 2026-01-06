@@ -67,7 +67,11 @@ Route::get('/produk-desa/{slug}', [ProductController::class, 'show'])->name('pro
 // --- Rute Profil Desa ---
 Route::get('/profil/visi', [FrontendProfileController::class, 'visionMission'])->name('profil.visi');
 Route::get('/profil/sejarah', [FrontendProfileController::class, 'history'])->name('profil.sejarah');
+Route::get('/profil/tentang-desa', [FrontendProfileController::class, 'tentang'])->name('profil.tentang');
 Route::get('/profil/struktur-pemerintahan', [FrontendProfileController::class, 'structure'])->name('profil.struktur');
+Route::get('/profil/statistika-penduduk', [FrontendProfileController::class, 'statistika'])->name('profil.statistikaPenduduk');
+Route::get('/profil/peraturan-desa', [FrontendProfileController::class, 'peraturan'])->name('profil.peraturan');
+
 
 // --- Rute Komentar (Pengiriman) ---
 Route::post('/news/{news}/comments', [CommentController::class, 'store'])->name('comments.store');

@@ -25,10 +25,28 @@ class ProfileController extends Controller
         return view('frontend.profile.history', compact('sejarah'));
     }
 
+    public function tentang()
+    {
+        $TentangDesa = ProfileContent::where('key', 'tentang_desa')->first();
+        return view('frontend.profile.tentang', compact('TentangDesa'));
+    }
+
     public function structure()
     {
         // Ambil konten Struktur Pemerintahan dari database
         $structure = ProfileContent::where('key', 'struktur_pemerintahan')->first();
         return view('frontend.profile.structure', compact('structure'));
+    }
+
+    public function statistika()
+    {
+        $statistika =ProfileContent::where('key', 'statistika_penduduk')->first();
+        return view('frontend.profile.statistika', compact('statistika'));
+    }
+    
+    public function peraturan()
+    {
+        $peraturan = ProfileContent::where('key', 'peraturan_desa')->first();
+        return view('frontend.profile.peraturan', compact('peraturan'));
     }
 }
