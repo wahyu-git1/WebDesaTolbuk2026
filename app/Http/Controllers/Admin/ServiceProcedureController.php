@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ServiceProcedure; // Import model ServiceProcedure
 use Illuminate\Http\Request;
 use Illuminate\Support\Str; // Untuk membuat slug
+use Illuminate\Support\Facades\Storage; // Untuk penyimpanan file
 
 class ServiceProcedureController extends Controller
 {
@@ -46,9 +47,10 @@ class ServiceProcedureController extends Controller
             'category' => 'nullable|string|max:255',
             'is_published' => 'nullable|boolean',
             'order' => 'nullable|integer',
+            'file' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
-        ServiceProcedure::create([
+        $data =[
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
@@ -56,8 +58,15 @@ class ServiceProcedureController extends Controller
             'category' => $request->category,
             'is_published' => $request->boolean('is_published'),
             'order' => $request->order,
-        ]);
+        ];
 
+        // LOGIKA UPLOAD FILE BARU
+        if ($request->hasFile('file')) {
+            // Simpan ke folder 'public/service_procedures'
+            $filePath = $request->file('file')->store('service_procedures', 'public');
+            $data['file_path'] = $filePath;
+        }
+        ServiceProcedure::create($data);
         return redirect()->route('admin.service-procedures.index')->with('success', 'Prosedur layanan berhasil ditambahkan.');
     }
 
@@ -88,9 +97,10 @@ class ServiceProcedureController extends Controller
             'category' => 'nullable|string|max:255',
             'is_published' => 'nullable|boolean',
             'order' => 'nullable|integer',
+            'file' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
-        $serviceProcedure->update([
+$data = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
@@ -98,9 +108,24 @@ class ServiceProcedureController extends Controller
             'category' => $request->category,
             'is_published' => $request->boolean('is_published'),
             'order' => $request->order,
-        ]);
+        ];
 
-        return redirect()->route('admin.service-procedures.index')->with('success', 'Prosedur layanan berhasil diperbarui.');
+        // LOGIKA UPDATE FILE
+        if ($request->hasFile('file')) {
+            // 1. Hapus file lama jika ada
+            if ($serviceProcedure->file_path && Storage::disk('public')->exists($serviceProcedure->file_path)) {
+                Storage::disk('public')->delete($serviceProcedure->file_path);
+            }
+
+            // 2. Upload file baru
+            $filePath = $request->file('file')->store('service_procedures', 'public');
+            $data['file_path'] = $filePath;
+        }
+
+        $serviceProcedure->update($data);
+
+        return redirect()->route('admin.service-procedures.index')
+            ->with('success', 'Prosedur layanan berhasil diperbarui.');
     }
 
     /**
@@ -108,6 +133,10 @@ class ServiceProcedureController extends Controller
      */
     public function destroy(ServiceProcedure $serviceProcedure)
     {
+        // HAPUS FILE SAAT DATA DIHAPUS
+        if ($serviceProcedure->file_path && Storage::disk('public')->exists($serviceProcedure->file_path)) {
+            Storage::disk('public')->delete($serviceProcedure->file_path);
+        }
         $serviceProcedure->delete();
         return redirect()->route('admin.service-procedures.index')->with('success', 'Prosedur layanan berhasil dihapus.');
     }

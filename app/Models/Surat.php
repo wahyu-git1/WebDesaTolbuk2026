@@ -27,7 +27,8 @@ class Surat extends Model
 
         'status',
         // KOLOM BARU: Untuk menampung semua inputan dinamis dari Admin
-        'data_surat'
+        'data_surat',
+        'lampiran'
     ];
     public function jenis()
     {
@@ -36,6 +37,7 @@ class Surat extends Model
     // INI PENTING: Agar saat dipanggil otomatis jadi Array, bukan String JSON
     protected $casts = [
         'data_surat' => 'array',
+        'lampiran' => 'array',
     ];
 
 

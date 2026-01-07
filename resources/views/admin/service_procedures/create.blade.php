@@ -9,8 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('admin.service-procedures.store') }}" method="POST">
+                    <form action="{{ route('admin.service-procedures.store') }}" method="POST" enctype="multipart/form-data" >
                         @csrf
+
                         <div class="mb-4">
                             <label for="title" class="block text-sm font-medium text-gray-700">Judul Prosedur</label>
                             <input type="text" name="title" id="title"
@@ -22,8 +23,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi Singkat
-                                (Opsional)</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi Singkat (Opsional)</label>
                             <textarea name="description" id="description" rows="3"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-desa-skyblue focus:ring focus:ring-desa-skyblue focus:ring-opacity-50">{{ old('description') }}</textarea>
                             @error('description')
@@ -32,20 +32,16 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="steps_requirements"
-                                class="block text-sm font-medium text-gray-700">Langkah-langkah & Persyaratan
-                                (Detail)</label>
+                            <label for="steps_requirements" class="block text-sm font-medium text-gray-700">Langkah-langkah & Persyaratan (Detail)</label>
                             <textarea name="steps_requirements" id="steps_requirements" rows="15"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-desa-skyblue focus:ring focus:ring-desa-skyblue focus:ring-opacity-50"
-                                required>{{ old('steps_requirements') }}</textarea>
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-desa-skyblue focus:ring focus:ring-desa-skyblue focus:ring-opacity-50">{{ old('steps_requirements') }}</textarea>
                             @error('steps_requirements')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="category" class="block text-sm font-medium text-gray-700">Kategori
-                                (Opsional)</label>
+                            <label for="category" class="block text-sm font-medium text-gray-700">Kategori (Opsional)</label>
                             <select name="category" id="category"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-desa-skyblue focus:ring focus:ring-desa-skyblue focus:ring-opacity-50">
                                 <option value="">-- Pilih Kategori --</option>
@@ -60,8 +56,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="order" class="block text-sm font-medium text-gray-700">Urutan Tampilan
-                                (Opsional)</label>
+                            <label for="order" class="block text-sm font-medium text-gray-700">Urutan Tampilan (Opsional)</label>
                             <input type="number" name="order" id="order"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-desa-skyblue focus:ring focus:ring-desa-skyblue focus:ring-opacity-50"
                                 value="{{ old('order') }}">
@@ -75,9 +70,25 @@
                             <input type="checkbox" name="is_published" id="is_published" value="1"
                                 class="rounded border-gray-300 text-desa-green shadow-sm focus:border-desa-green focus:ring focus:ring-desa-green focus:ring-opacity-50"
                                 {{ old('is_published', true) ? 'checked' : '' }}>
-                            <label for="is_published"
-                                class="ml-2 block text-sm font-medium text-gray-700">Publikasikan</label>
+                            <label for="is_published" class="ml-2 block text-sm font-medium text-gray-700">Publikasikan</label>
                             @error('is_published')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="file" class="block text-sm font-medium text-gray-700 mb-2">Upload File PDF (Panduan/Formulir)</label>
+                            <input type="file" name="file" id="file" accept="application/pdf"
+                                class="block w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100
+                                border border-gray-300 rounded-lg p-2 shadow-sm">
+                            <p class="text-xs text-gray-500 mt-1">Format: PDF. Maksimal 2MB.</p>
+                            
+                            @error('file')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -86,13 +97,15 @@
                             <a href="{{ route('admin.service-procedures.index') }}"
                                 class="text-gray-600 hover:text-gray-900 mr-4">Batal</a>
                             <button type="submit"
-                                class="bg-desa-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
+                                class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
                                 Simpan Prosedur
                             </button>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </x-admin-layout>
+

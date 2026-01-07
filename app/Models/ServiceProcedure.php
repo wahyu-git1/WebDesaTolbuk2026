@@ -16,8 +16,10 @@ class ServiceProcedure extends Model
         'description',
         'steps_requirements',
         'category',
+        'file_path',
         'is_published',
         'order',
+
     ];
 
     protected $casts = [

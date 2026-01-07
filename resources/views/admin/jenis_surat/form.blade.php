@@ -103,6 +103,44 @@
                 </div>
             </div>
 
+
+            <!-- Lampiran  -->
+            <hr class="my-6 border-gray-300">
+
+            <div class="bg-white p-4 shadow rounded-lg">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h3 class="text-lg font-medium">Persyaratan Berkas (Upload)</h3>
+                    <button type="button" id="add-syarat-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-3 py-1 rounded">
+                        + Tambah Syarat
+                    </button>
+                </div>
+                
+                <p class="text-sm text-gray-500 mb-4">Tentukan dokumen apa saja yang bisa diupload user (Opsional/Wajib).</p>
+
+                <div id="syarat-container" class="space-y-3">
+                    @php
+                        $syarat = old('persyaratan', $jenis->persyaratan ?? []);
+                    @endphp
+
+                    @foreach($syarat as $index => $item)
+                        <div class="syarat-item border border-indigo-200 bg-indigo-50 p-3 rounded-md relative">
+                            <button type="button" class="remove-syarat absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold">&times;</button>
+                            
+                            <div class="mb-2">
+                                <label class="text-xs font-bold text-gray-600">Nama Berkas</label>
+                                <input type="text" name="persyaratan[{{ $index }}][nama]" value="{{ $item['nama'] ?? '' }}" 
+                                    class="w-full text-sm border-gray-300 rounded p-1" placeholder="Misal: Scan KTP" required>
+                            </div>
+                            <div class="mb-2">
+                                <label class="text-xs font-bold text-gray-600">Variable (snake_case)</label>
+                                <input type="text" name="persyaratan[{{ $index }}][key]" value="{{ $item['key'] ?? '' }}" 
+                                    class="w-full text-sm border-gray-300 rounded p-1" placeholder="scan_ktp" required>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="flex justify-end space-x-2 pt-4 border-t">
                 <a href="{{ route('admin.jenis-surat.index') }}"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow">Kembali</a>
@@ -119,11 +157,18 @@
             const container = document.getElementById('fields-container');
             const addBtn = document.getElementById('add-field-btn');
             const emptyMsg = document.getElementById('empty-msg');
+
+            
             
             // Hitung index berdasarkan jumlah elemen yang ada agar tidak bentrok
             let fieldIndex = document.querySelectorAll('.field-item').length;
+            
+            // SCRIPT BARU UNTUK SYARAT BERKAS
+            const containerSyarat = document.getElementById('syarat-container');
+            const addBtnSyarat = document.getElementById('add-syarat-btn');
+            let syaratIndex = document.querySelectorAll('.syarat-item').length;
 
-            function checkEmpty() {
+                    function checkEmpty() {
                 if (document.querySelectorAll('.field-item').length === 0) {
                     emptyMsg.classList.remove('hidden');
                 } else {
@@ -155,10 +200,33 @@
                                 <option value="date">Tanggal</option>
                                 <option value="textarea">Area Teks</option>
                             </select>
+                            </div>
                         </div>
-                    </div>
-                `;
-                
+                    `;
+                    addBtnSyarat.addEventListener('click', function() {
+                    const template = `
+                        <div class="syarat-item border border-indigo-200 bg-indigo-50 p-3 rounded-md relative animate-pulse">
+                            <button type="button" class="remove-syarat absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold">&times;</button>
+                            <div class="mb-2">
+                                <label class="text-xs font-bold text-gray-600">Nama Berkas</label>
+                                <input type="text" name="persyaratan[${syaratIndex}][nama]" class="w-full text-sm border-gray-300 rounded p-1" placeholder="Misal: Foto KTP" required>
+                            </div>
+                            <div class="mb-2">
+                                <label class="text-xs font-bold text-gray-600">Variable</label>
+                                <input type="text" name="persyaratan[${syaratIndex}][key]" class="w-full text-sm border-gray-300 rounded p-1" placeholder="foto_ktp" required>
+                            </div>
+                        </div>
+                    `;
+                    containerSyarat.insertAdjacentHTML('beforeend', template);
+                    syaratIndex++;
+                });
+
+                containerSyarat.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('remove-syarat')) {
+                        e.target.closest('.syarat-item').remove();
+                    }
+                });
+                            
                 // Masukkan HTML baru ke container
                 container.insertAdjacentHTML('beforeend', template);
                 
@@ -179,6 +247,8 @@
                     }
                 }
             });
+
+            
         });
     </script>
 </x-admin-layout>

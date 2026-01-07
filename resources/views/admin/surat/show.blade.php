@@ -80,6 +80,31 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- agar admin bisa mengeklik dan mendownload berkas itu -->
+                        <div class="mt-6 md:col-span-2">
+                            <h4 class="font-bold text-gray-700 mb-3 uppercase text-sm border-b pb-1">Berkas Lampiran</h4>
+                            
+                            @if($surat->lampiran && count($surat->lampiran) > 0)
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                    @foreach($surat->lampiran as $key => $path)
+                                        <div class="border rounded p-3 flex items-center justify-between bg-gray-50">
+                                            <div class="overflow-hidden">
+                                                <span class="block text-xs font-bold text-gray-500 uppercase">{{ str_replace('_', ' ', $key) }}</span>
+                                                <span class="text-xs text-gray-400 truncate block">{{ basename($path) }}</span>
+                                            </div>
+                                            <a href="{{ asset('storage/' . $path) }}" target="_blank" 
+                                            class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-2 rounded ml-2 flex-shrink-0">
+                                                Lihat / Download
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <p class="text-sm text-gray-400 italic bg-gray-50 p-3 rounded border">
+                                    Tidak ada berkas lampiran yang diupload.
+                                </p>
+                            @endif
+                        </div>
 
                     </div>
 

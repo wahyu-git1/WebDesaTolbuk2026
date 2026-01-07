@@ -15,7 +15,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('surat.public.store') }}" method="POST" class="space-y-6">
+                <form action="{{ route('surat.public.store') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
@@ -65,6 +65,17 @@
                             </div>
                     </div>
 
+                    <div id="dynamic-fields-section" class="hidden ...">
+                        </div>
+
+                    <div id="upload-files-section" class="hidden bg-indigo-50 p-4 rounded-lg border border-indigo-200 mt-4">
+                        <h3 class="text-lg font-medium text-indigo-800 mb-4 border-b border-indigo-200 pb-2">
+                            Upload Berkas Pendamping (Opsional)
+                        </h3>
+                        <div id="upload-files-container" class="space-y-4">
+                            </div>
+                    </div>
+
                     <div class="pt-4">
                         <button type="submit" 
                             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded shadow transition duration-200">
@@ -88,6 +99,8 @@
 
             // 2. Event saat user memilih dropdown
             selectElement.addEventListener('change', function() {
+                document.getElementById('upload-files-section').classList.add('hidden');
+                document.getElementById('upload-files-container').innerHTML = '';
                 const selectedId = this.value;
                 
                 // Reset container
@@ -144,6 +157,27 @@
                             `;
                             
                             fieldsContainer.appendChild(wrapper);
+                        });
+                    }
+
+
+                    if (selectedSurat.persyaratan && selectedSurat.persyaratan.length > 0) {
+                        document.getElementById('upload-files-section').classList.remove('hidden');
+
+                        selectedSurat.persyaratan.forEach(syarat => {
+                            // Input name: lampiran[key_variable]
+                            const inputHtml = `
+                                <div class="bg-white p-3 rounded border border-indigo-100">
+                                    <label class="block font-medium text-sm text-gray-700 mb-1">
+                                        ${syarat.nama}
+                                    </label>
+                                    <input type="file" name="lampiran[${syarat.key}]" 
+                                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                                        accept=".jpg,.jpeg,.png,.pdf">
+                                    <small class="text-gray-400">Format: PDF/JPG. Maks 2MB.</small>
+                                </div>
+                            `;
+                            document.getElementById('upload-files-container').insertAdjacentHTML('beforeend', inputHtml);
                         });
                     }
                 }

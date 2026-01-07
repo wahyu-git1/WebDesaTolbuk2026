@@ -46,6 +46,8 @@ class JenisSuratController extends Controller
             'kode' => 'nullable|string|max:255|unique:jenis_surats,kode',
             'deskripsi' => 'nullable|string',
             'template' => 'nullable|string',
+            'fields' => 'nullable|array',
+            'persyaratan' => 'nullable|array',  
         ]);
 
         JenisSurat::create($request->all());

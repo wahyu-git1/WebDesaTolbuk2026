@@ -46,7 +46,10 @@ class SuratController extends Controller
             'nik'            => 'required|numeric', // Ubah string ke numeric jika perlu
             'no_hp'          => 'required|string',
             'data_values'    => 'nullable|array', // Array penampung input dinamis
+            'lampiran.*'     => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:4048',
         ];
+
+        // dd($rules);
 
         // 3. Setup Validasi Dinamis (Looping fields dari database)
         if ($jenisSurat->fields) {
@@ -58,7 +61,24 @@ class SuratController extends Controller
             }
         }
 
+        // dd($jenisSurat);
+
+
+  
         $request->validate($rules);
+        // dd($request);
+
+        $lampiranPaths = [];
+        if ($request->hasFile('lampiran')) {
+            foreach ($request->file('lampiran') as $key => $file) {
+                // Simpan ke storage/app/public/lampiran
+                // Nama file diacak agar aman
+                $path = $file->store('lampiran', 'public');
+                
+                // Simpan pathnya ke array dengan key sesuai variable (misal: scan_ktp => path/file.jpg)
+                $lampiranPaths[$key] = $path;
+            }
+        }
 
         // 4. Simpan Surat
         $surat = Surat::create([
@@ -69,6 +89,7 @@ class SuratController extends Controller
             'no_hp'         => $request->no_hp,
             'status'         => 'diajukan',
             'data_surat'     => $request->data_values, // Simpan array dinamis ke kolom JSON
+            'lampiran'      => $lampiranPaths, // Simpan array path lampiran ke kolom JSON
         ]);
 
         return redirect()->route('surat.tracking')

@@ -15,7 +15,8 @@ class JenisSurat extends Model
         'kode', 
         'deskripsi',
         'template',
-        'fields'
+        'fields',
+        'persyaratan'
     ];
 
     public function surats()
@@ -27,5 +28,6 @@ class JenisSurat extends Model
 // Laravel otomatis mengubahnya jadi Array PHP. Saat kamu menyimpannya, Laravel otomatis mengubahnya jadi JSON string.
     protected $casts = [
         'fields' => 'array',
+        'persyaratan' => 'array',
     ];
 }
