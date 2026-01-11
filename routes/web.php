@@ -13,7 +13,10 @@ use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\PotentialController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ServiceProcedureController;
+use App\Http\Controllers\ServiceSubmissionController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\ArticleController;
+
 
 // Rute Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -51,6 +54,8 @@ Route::get('/galeri/{slug}', [GalleryController::class, 'show'])->name('gallery.
 Route::get('/prosedur-layanan', [ServiceProcedureController::class, 'index'])->name('service-procedures');
 Route::get('/prosedur-layanan/{slug}', [ServiceProcedureController::class, 'show'])->name('service-procedures.show');
 
+// submiission controller
+Route::post('/service-submission', [ServiceSubmissionController::class, 'store'])->name('service-submission.store');
 
 // --- Rute Dokumen Publik ---
 Route::get('/dokumen-publik', [DocumentController::class, 'index'])->name('documents');
@@ -86,6 +91,15 @@ Route::get('/ajukan-surat', [SuratController::class, 'createPublic'])->name('sur
 Route::post('/ajukan-surat', [SuratController::class, 'storePublic'])->name('surat.public.store');
 Route::get('/cek-surat', [SuratController::class, 'tracking'])->name('surat.tracking');
 Route::post('/cek-surat', [SuratController::class, 'trackingResult'])->name('surat.tracking.result');
+
+
+// Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+// Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+// Halaman Daftar Artikel (Index)
+Route::get('/berita1', [ArticleController::class, 'index'])->name('articles.index');
+
+// Halaman Detail Artikel (Show)
+Route::get('/berita1/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Route::get('/profil/visi-misi', [ProfileController::class, 'visiMisi'])->name('profil.visi');
 require __DIR__ . '/auth.php';

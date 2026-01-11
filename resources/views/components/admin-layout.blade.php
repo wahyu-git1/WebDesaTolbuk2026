@@ -341,26 +341,28 @@
                                 Galeri
                             </a>
                         </li>
+
                         <li>
-                            <a href="{{ route('admin.potentials.index') }}"
+                            <a href="{{ route('admin.categories.index') }}"
                                 class="block w-full p-2 rounded-md text-sm
                                       text-gray-700 dark:text-gray-200
                                       hover:bg-gray-200 dark:hover:bg-gray-600
                                       transition-colors duration-150 ease-in-out
-                                      {{ request()->routeIs('admin.potentials.*') ? 'bg-gray-200 dark:bg-gray-600 font-semibold' : '' }}">
-                                Potensi Desa
+                                      {{ request()->routeIs('admin.categories.*') ? 'bg-gray-200 dark:bg-gray-600 font-semibold' : '' }}">
+                                Kategory Artikel
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.products.index') }}"
+                            <a href="{{ route('admin.articles.index') }}"
                                 class="block w-full p-2 rounded-md text-sm
                                       text-gray-700 dark:text-gray-200
                                       hover:bg-gray-200 dark:hover:bg-gray-600
                                       transition-colors duration-150 ease-in-out
-                                      {{ request()->routeIs('admin.products.*') ? 'bg-gray-200 dark:bg-gray-600 font-semibold' : '' }}">
-                                Produk Desa
+                                      {{ request()->routeIs('admin.articles.*') ? 'bg-gray-200 dark:bg-gray-600 font-semibold' : '' }}">
+                                Artikel 
                             </a>
                         </li>
+ 
                         <li>
                             <a href="{{ route('admin.documents.index') }}"
                                 class="block w-full p-2 rounded-md text-sm

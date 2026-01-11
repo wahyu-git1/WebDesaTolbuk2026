@@ -71,7 +71,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('service-submission.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('service-submission.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="service_procedure_id" value="{{ $procedure->id }}">
 

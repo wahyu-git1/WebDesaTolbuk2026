@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VisionMissionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\CategoryAdminController;
 
 // route login
 Route::get('/login', function () {
@@ -80,4 +82,10 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'role:admin'])->as('admi
         ->name('jenis-surat.preview.show');
 
     Route::resource('jenis-surat', JenisSuratController::class);
+
+    // Management Artikel
+    Route::resource('articles', ArticleAdminController::class)->names('articles');
+
+    // management category
+    Route::resource('categories', CategoryAdminController::class)->names('categories');
 });

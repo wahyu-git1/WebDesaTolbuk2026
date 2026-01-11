@@ -59,7 +59,7 @@
                     </div>
 
                     <x-nav-link :href="route('potentials')" :active="request()->routeIs('potentials')">{{ __('Potensi Desa') }}</x-nav-link>
-                    <x-nav-link :href="route('news')" :active="request()->routeIs('news')">{{ __('Berita') }}</x-nav-link>
+                    <x-nav-link :href="route('news')" :active="request()->routeIs('news')">{{ __('Berita desa   ') }}</x-nav-link>
                     <x-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')">{{ __('Galeri') }}</x-nav-link>
                     <x-nav-link :href="route('online-services')" :active="request()->routeIs('online-services')">{{ __('Layanan Online') }}</x-nav-link>
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">{{ __('Kontak') }}</x-nav-link>
@@ -163,6 +163,10 @@
             <x-responsive-nav-link :href="route('potentials')"
                 :active="request()->routeIs('potentials')">{{ __('Potensi Desa') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('news')" :active="request()->routeIs('news')">{{ __('Berita') }}</x-responsive-nav-link>
+
+
+
+            
             <x-responsive-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')">{{ __('Galeri') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('online-services')"
                 :active="request()->routeIs('online-services')">{{ __('Layanan Online') }}</x-responsive-nav-link>
