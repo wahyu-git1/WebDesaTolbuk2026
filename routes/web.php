@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\PotentialController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ServiceProcedureController;
+use App\Http\Controllers\ServiceSubmissionController;
 use App\Http\Controllers\SuratController;
 
 // Rute Homepage
@@ -51,6 +52,8 @@ Route::get('/galeri/{slug}', [GalleryController::class, 'show'])->name('gallery.
 Route::get('/prosedur-layanan', [ServiceProcedureController::class, 'index'])->name('service-procedures');
 Route::get('/prosedur-layanan/{slug}', [ServiceProcedureController::class, 'show'])->name('service-procedures.show');
 
+// submiission controller
+Route::post('/service-submission', [ServiceSubmissionController::class, 'store'])->name('service-submission.store');
 
 // --- Rute Dokumen Publik ---
 Route::get('/dokumen-publik', [DocumentController::class, 'index'])->name('documents');
