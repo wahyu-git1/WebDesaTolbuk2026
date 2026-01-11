@@ -38,7 +38,22 @@
                     <li><a href="{{ route('login') }}" class="transition hover:text-primary-dark">Login Admin</a></li>
                 </ul>
             </div>
+            
+            {{-- Kolom 3: Layanan --}}
+            <div>
+                <h4 class="text-lg font-semibold mb-3 text-primary">Layanan</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="{{ route('online-services') }}" class="transition hover:text-primary-dark">Layanan
+                            Online</a></li>
+                    <li><a href="{{ route('service-procedures') }}" class="transition hover:text-primary-dark">Prosedur
+                            Layanan</a></li>
+                    <li><a href="{{ route('documents') }}" class="transition hover:text-primary-dark">Dokumen Publik</a>
+                    </li>
+                    <li><a href="{{ route('login') }}" class="transition hover:text-primary-dark">Login Admin</a></li>
+                </ul>
+            </div>
 
+            
             {{-- Kolom 4: Kontak --}}
             <div>
                 <h4 class="text-lg font-semibold mb-3 text-primary">Kontak</h4>

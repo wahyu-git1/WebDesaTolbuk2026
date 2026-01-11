@@ -50,6 +50,8 @@
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Statistika Penduduk</a>
                     </div>
                 </div>
+
+                <!-- layanan  -->
                 <div class="relative" x-data="{ dropdownOpenLayanan: false }" @mouseenter="dropdownOpenLayanan = true"
                     @mouseleave="dropdownOpenLayanan = false">
                     <button
@@ -71,12 +73,47 @@
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ajukan Surat Online</a>
                     </div>
                 </div>
+                
+
+
+
+                <!-- Artikel  -->
+                <div class="relative" x-data="{ dropdownOpenLayanan: false }" @mouseenter="dropdownOpenLayanan = true"
+                    @mouseleave="dropdownOpenLayanan = false">
+                    <button
+                        class="flex items-center gap-1 text-sm font-semibold text-white hover:text-yellow-200 transition   mt-1
+                        {{ request()->routeIs('service-procedures') ||
+                        request()->routeIs('documents') ||
+                        request()->routeIs('ajukan-surat')
+                            ? 'border-b-2 border-primary': '' }}">
+                        <span class="leading-tight text-sm">Artikel</span>
+                    </button>
+                    <div x-show="dropdownOpenLayanan" x-transition
+                        class="absolute top-5 right-0 mt-2 w-max bg-white shadow-lg rounded-md py-4 z-50">
+                        <a href="{{ route('documents') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Tambak Bandeng</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Tambak Udang</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mangrove</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hasil Pertanian</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Petani Garam</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Peternakan</a>
+                        <a href="{{ route('surat.public.create') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lainnya</a>
+                    </div>
+                </div>
+
+
 
                 {{-- NAV-LINK UTAMA LAINNYA --}}
                 <x-nav-link :href="route('potentials')" :active="request()->routeIs('potentials')"
                     class="text-white text-base font-semibold hover:text-yellow-200">Potensi</x-nav-link>
                 <x-nav-link :href="route('news')" :active="request()->routeIs('news') || request()->routeIs('news.show')"
-                    class="text-white text-base font-semibold hover:text-yellow-200">Berita</x-nav-link>
+                    class="text-white text-base font-semibold hover:text-yellow-200">Berita Galeri </x-nav-link>
                 <x-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')"
                     class="text-white text-base font-semibold hover:text-yellow-200">Galeri</x-nav-link>
                 <x-nav-link :href="route('institutions.index')" :active="request()->routeIs('institutions.index') || request()->routeIs('institutions.show')"
@@ -125,6 +162,7 @@
             </div>
         </div>
     </div>
+
     <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden bg-primary-dark">
         <div class="px-4 pt-2 pb-4 space-y-2">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')"

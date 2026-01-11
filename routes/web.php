@@ -15,6 +15,8 @@ use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\ServiceProcedureController;
 use App\Http\Controllers\ServiceSubmissionController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\ArticleController;
+
 
 // Rute Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -89,6 +91,15 @@ Route::get('/ajukan-surat', [SuratController::class, 'createPublic'])->name('sur
 Route::post('/ajukan-surat', [SuratController::class, 'storePublic'])->name('surat.public.store');
 Route::get('/cek-surat', [SuratController::class, 'tracking'])->name('surat.tracking');
 Route::post('/cek-surat', [SuratController::class, 'trackingResult'])->name('surat.tracking.result');
+
+
+// Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+// Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+// Halaman Daftar Artikel (Index)
+Route::get('/berita1', [ArticleController::class, 'index'])->name('articles.index');
+
+// Halaman Detail Artikel (Show)
+Route::get('/berita1/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Route::get('/profil/visi-misi', [ProfileController::class, 'visiMisi'])->name('profil.visi');
 require __DIR__ . '/auth.php';
