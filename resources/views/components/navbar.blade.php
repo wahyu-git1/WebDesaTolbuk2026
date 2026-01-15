@@ -66,7 +66,7 @@
                     <div x-show="dropdownOpenLayanan" x-transition
                         class="absolute top-5 right-0 mt-2 w-max bg-white shadow-lg rounded-md py-4 z-50">
                         <a href="{{ route('service-procedures') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Prosedur Layanan</a>
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Prosedur Layanan dan semi online</a>
                         <a href="{{ route('documents') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dokumen Surat-surat</a>
                         <a href="{{ route('surat.public.create') }}"
@@ -75,45 +75,12 @@
                 </div>
                 
 
-
-
                 <!-- Artikel  -->
-                <div class="relative" x-data="{ dropdownOpenLayanan: false }" @mouseenter="dropdownOpenLayanan = true"
-                    @mouseleave="dropdownOpenLayanan = false">
-                    <button
-                        class="flex items-center gap-1 text-sm font-semibold text-white hover:text-yellow-200 transition   mt-1
-                        {{ request()->routeIs('service-procedures') ||
-                        request()->routeIs('documents') ||
-                        request()->routeIs('ajukan-surat')
-                            ? 'border-b-2 border-primary': '' }}">
-                        <span class="leading-tight text-sm">Artikel</span>
-                    </button>
-                    <div x-show="dropdownOpenLayanan" x-transition
-                        class="absolute top-5 right-0 mt-2 w-max bg-white shadow-lg rounded-md py-4 z-50">
-                        <a href="{{ route('documents') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Tambak Bandeng</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Tambak Udang</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mangrove</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hasil Pertanian</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Petani Garam</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Potensi Peternakan</a>
-                        <a href="{{ route('surat.public.create') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lainnya</a>
-                    </div>
-                </div>
-
-
-
                 {{-- NAV-LINK UTAMA LAINNYA --}}
-                <x-nav-link :href="route('potentials')" :active="request()->routeIs('potentials')"
-                    class="text-white text-base font-semibold hover:text-yellow-200">Potensi</x-nav-link>
+                <x-nav-link :href="route('articles.index')" :active="request()->routeIs('potentials')"
+                    class="text-white text-base font-semibold hover:text-yellow-200">Artikel</x-nav-link>
                 <x-nav-link :href="route('news')" :active="request()->routeIs('news') || request()->routeIs('news.show')"
-                    class="text-white text-base font-semibold hover:text-yellow-200">Berita Galeri </x-nav-link>
+                    class="text-white text-base font-semibold hover:text-yellow-200">Berita </x-nav-link>
                 <x-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')"
                     class="text-white text-base font-semibold hover:text-yellow-200">Galeri</x-nav-link>
                 <x-nav-link :href="route('institutions.index')" :active="request()->routeIs('institutions.index') || request()->routeIs('institutions.show')"
@@ -208,7 +175,7 @@
                 <div x-show="mobileLayananDesa" class="space-y-1 pl-4 pt-2">
                     <x-responsive-nav-link :href="route('service-procedures')" :active="request()->routeIs('service-procedures')"
                         class="block text-white hover:bg-desa-green-600 px-3 py-2 rounded-md">Prosedur
-                        Layanan</x-responsive-nav-link>
+                        Layanan/semi online</x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('documents')" :active="request()->routeIs('documents')"
                         class="block text-white hover:bg-desa-green-600 px-3 py-2 rounded-md">Dokumen
                         Desa</x-responsive-nav-link>
@@ -217,8 +184,8 @@
                         Online</x-responsive-nav-link>
                 </div>
             </div>
-            <x-responsive-nav-link :href="route('potentials')" :active="request()->routeIs('potentials')"
-                class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Potensi</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('news')"
+                class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Artikel</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('news')" :active="request()->routeIs('news')"
                 class="block text-white hover:bg-desa-green-700 px-3 py-2 rounded-md">Berita</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')"
