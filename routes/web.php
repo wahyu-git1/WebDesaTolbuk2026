@@ -96,11 +96,17 @@ Route::post('/cek-surat', [SuratController::class, 'trackingResult'])->name('sur
 // Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 // Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 // Halaman Daftar Artikel (Index)
-Route::get('/berita1', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
 
 // Halaman Detail Artikel (Show)
 Route::get('/berita1/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Route::get('/profil/visi-misi', [ProfileController::class, 'visiMisi'])->name('profil.visi');
+
+
+Route::get('/layanan', function () {
+    return view('frontend.pageLayanan');
+})->name('layanan.index');
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

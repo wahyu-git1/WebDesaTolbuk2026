@@ -40,9 +40,14 @@
                                 Jelajahi Desa
                             </a>
                             <a href="{{ route('news') }}" 
-                               class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border-2 border-white/30 hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                                Berita Terkini
-                            </a>
+                            class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border-2 border-white/30 hover:bg-white/20 hover:scale-105 transition-all duration-300">
+                            Berita Terkini
+                        </a>
+
+                        <a href="{{ route('layanan.index') }}" 
+                           class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-2xl hover:shadow-white/50 hover:scale-105 transition-all duration-300">
+                            Layanan Administrasi desa
+                        </a>
                         </div>
                     </div>
                 </div>
